@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ETT_ETL
+namespace Main
 {
     class Program
     {
