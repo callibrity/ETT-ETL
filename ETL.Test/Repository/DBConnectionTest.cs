@@ -1,8 +1,5 @@
 using NUnit.Framework;
 using ETL.Repository;
-using System;
-using System.Data.Common;
-using System.ComponentModel.Design;
 using System.Collections.Generic;
 
 namespace ETL.Repository.Test
@@ -23,18 +20,20 @@ namespace ETL.Repository.Test
 
         [SetUp]
         public void Setup()
-        { }
+        {
+
+        }
 
         [Test]
         public void should_create_db_connection_object()
         {
-            DBConnection con = new DBConnection("", "", "", "");
+            DBConnection con = new DBConnection();
         }
 
         [Test]
         public void connection_should_initially_be_closed()
         {
-            DBConnection con = new DBConnection("", "", "", "");
+            DBConnection con = new DBConnection();
             Assert.IsFalse(con.IsConnectionOpen);
         }
 
@@ -42,7 +41,7 @@ namespace ETL.Repository.Test
         public void should_connect_to_database()
         {
 
-            DBConnection con = GetDBConnection();
+            DBConnection con = new DBConnection();
             con.Connect();
             Assert.IsTrue(con.IsConnectionOpen);
         }
@@ -50,21 +49,21 @@ namespace ETL.Repository.Test
         [Test]
         public void should_close_connection()
         {
-            DBConnection con = GetDBConnection();
+            DBConnection con = new DBConnection();
             con.Connect();
             con.Dispose();
-            Assert.IsFalse( con.IsConnectionOpen);
+            Assert.IsFalse(con.IsConnectionOpen);
         }
 
         [Test]
         public void should_close_connection_after_disposal()
         {
             DBConnection con;
-            using (con = GetDBConnection())
+            using (con = new DBConnection())
             {
                 con.Connect();
             }
-            
+
             Assert.IsFalse(con.IsConnectionOpen);
         }
 
@@ -73,20 +72,20 @@ namespace ETL.Repository.Test
         {
             List<TestClass> temp = null;
             DBConnection con;
-            using (con = GetDBConnection())
+            using (con = new DBConnection())
             {
                 con.Connect();
-                temp = con.executeQuery<TestClass> (@"Select 'hi', 7");
+                temp = con.executeQuery<TestClass>(@"Select 'hi', 7");
             }
             Assert.AreEqual("hi", temp[0].str);
             Assert.AreEqual(7, temp[0].num);
         }
 
         [Test]
-        public void should_return_negaative_one_on_query()
+        public void should_return_negative_one_on_query()
         {
             DBConnection con;
-            using (con = GetDBConnection())
+            using (con = new DBConnection())
             {
                 con.Connect();
                 Assert.AreEqual(-1, con.executeNonQuery("Select NOW()"));
@@ -94,9 +93,6 @@ namespace ETL.Repository.Test
 
         }
 
-        private DBConnection GetDBConnection()
-        {
-            return new DBConnection("","","","");
-        }
+
     }
 }

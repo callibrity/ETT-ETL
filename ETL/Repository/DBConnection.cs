@@ -1,12 +1,13 @@
 using Npgsql;
 using System;
 using System.Collections.Generic;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace ETL.Repository
 {
     public class DBConnection : IDisposable
     {
-        private NpgsqlConnection connection;
         public bool IsConnectionOpen
         {
             get
@@ -15,10 +16,15 @@ namespace ETL.Repository
             }
             private set { }
         }
+        private static IConfigurationRoot configuration;
+        private NpgsqlConnection connection;
 
-        public DBConnection(string Host, string Username, string Password, string Database)
+        public DBConnection()
         {
-            connection = new NpgsqlConnection($"Host={Host};Username={Username};Password={Password};Database={Database}");
+            ServiceCollection serviceCollection = new ServiceCollection();
+            ConfigureServices(serviceCollection);
+            String connectionString = GetConnectionString();
+            connection = new NpgsqlConnection(connectionString);
         }
 
         public void Connect()
@@ -56,7 +62,25 @@ namespace ETL.Repository
             return cmd.ExecuteNonQuery();
         }
 
+        private string  GetConnectionString()
+        {
+            string host = configuration.GetConnectionString("Host");
+            string username = configuration.GetConnectionString("UserName");
+            string password = configuration.GetConnectionString("Password");
+            string database = configuration.GetConnectionString("Database");
+            return $"Host={host};Username={username};Password={password};Database={database}";
+        }
 
+        private static void ConfigureServices(IServiceCollection serviceCollection)
+        {
+            string dir = System.AppDomain.CurrentDomain.BaseDirectory;
+            configuration = new ConfigurationBuilder()
+                .SetBasePath(System.AppDomain.CurrentDomain.BaseDirectory)
+                .AddJsonFile("appsettings.json", false)
+                .Build();
+
+            serviceCollection.AddSingleton<IConfigurationRoot>(configuration);
+        }
 
     }
 }

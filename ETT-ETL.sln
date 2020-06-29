@@ -3,11 +3,14 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Main", "Main\Main.csproj", "{76FD5CF5-F131-4F9A-857F-C919F1A09360}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Main", "Main\Main.csproj", "{76FD5CF5-F131-4F9A-857F-C919F1A09360}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D51A9772-4238-455E-A83D-2F2ED2864341} = {D51A9772-4238-455E-A83D-2F2ED2864341}
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ETL", "ETL\ETL.csproj", "{D51A9772-4238-455E-A83D-2F2ED2864341}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ETL", "ETL\ETL.csproj", "{D51A9772-4238-455E-A83D-2F2ED2864341}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ETL.Test", "ETL.Test\ETL.Test.csproj", "{967A757E-B9B2-40DB-AC81-1B0B1A8B4CFE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ETL.Test", "ETL.Test\ETL.Test.csproj", "{967A757E-B9B2-40DB-AC81-1B0B1A8B4CFE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,9 +20,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{76FD5CF5-F131-4F9A-857F-C919F1A09360}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -58,5 +58,11 @@ Global
 		{967A757E-B9B2-40DB-AC81-1B0B1A8B4CFE}.Release|x64.Build.0 = Release|Any CPU
 		{967A757E-B9B2-40DB-AC81-1B0B1A8B4CFE}.Release|x86.ActiveCfg = Release|Any CPU
 		{967A757E-B9B2-40DB-AC81-1B0B1A8B4CFE}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9B60DADA-53D3-4C33-B901-9E5C2FD40320}
 	EndGlobalSection
 EndGlobal
