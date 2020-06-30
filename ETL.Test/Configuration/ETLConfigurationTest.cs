@@ -10,9 +10,9 @@ namespace ETL.Test.Configuration
         public void ShouldRetrieveValueFromEnvironmentVariableFirst()
         {
             string expected = "Other Value";
-            Environment.SetEnvironmentVariable("Test", expected);
-            string actual = ETLConfiguration.GetValue("Test");
-            Environment.SetEnvironmentVariable("Test", "");
+            Environment.SetEnvironmentVariable("TEST", expected);
+            string actual = ETLConfiguration.GetValue("TEST");
+            Environment.SetEnvironmentVariable("TEST", "");
             Assert.Equal(expected, actual);
         }
 
@@ -20,7 +20,7 @@ namespace ETL.Test.Configuration
         public void ShouldRetrieveValueFromAppSettingsLast()
         {
             string expected = "Value";
-            string actual = ETLConfiguration.GetValue("Test");
+            string actual = ETLConfiguration.GetValue("TEST");
             Assert.Equal(expected, actual);
         }
     }
