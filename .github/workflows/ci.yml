@@ -1,0 +1,29 @@
+name: Build and run tests
+on:
+  push:
+    branches-ignore: 
+      - master
+  pull_request: 
+
+jobs:  
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Git checkout
+      uses: actions/checkout@v2
+
+
+    - name: Use Node.js 12.x
+      uses: actions/setup-node@v1
+      with:
+        node-version: '12.x'
+
+    - name: Install, build, and test
+      run: |
+        dotnet test
+      env:
+        TEST_HOST: ${{ secrets.TEST_HOST }}
+        TEST_USERNAME: ${{ secrets.TEST_USERNAME }}
+        TEST_PASSWORD: ${{ secrets.TEST_PASSWORD }}
+        TEST_DATABASE: ${{ secrets.TEST_DATABASE }}

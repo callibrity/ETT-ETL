@@ -64,10 +64,17 @@ namespace ETL.Repository
 
         private string  GetConnectionString()
         {
+
             string host = configuration.GetConnectionString("Host");
             string username = configuration.GetConnectionString("UserName");
             string password = configuration.GetConnectionString("Password");
             string database = configuration.GetConnectionString("Database");
+            if(String.IsNullOrEmpty(host)){
+                host = Environment.GetEnvironmentVariable("TEST_HOST");
+                username = Environment.GetEnvironmentVariable("TEST_USERNAME");
+                password = Environment.GetEnvironmentVariable("TEST_PASSWORD");
+                database = Environment.GetEnvironmentVariable("TEST_DATABASE");
+            }
             return $"Host={host};Username={username};Password={password};Database={database}";
         }
 
