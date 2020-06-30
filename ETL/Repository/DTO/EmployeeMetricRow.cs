@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace ETL.Repository.DTO
 {
-    public class EmployeeMetric
+    public class EmployeeMetricRow
     {
         public string EmployeeNumber { get; set; }
         public DateTime Date { get; set; }

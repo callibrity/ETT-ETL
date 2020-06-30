@@ -1,5 +1,4 @@
-using NUnit.Framework;
-using ETL.Repository;
+using Xunit;
 using System.Collections.Generic;
 
 namespace ETL.Repository.Test
@@ -18,45 +17,39 @@ namespace ETL.Repository.Test
             }
         }
 
-        [SetUp]
-        public void Setup()
-        {
-
-        }
-
-        [Test]
-        public void should_create_db_connection_object()
+        [Fact]
+        public void ShouldCreateDBConnectionObject()
         {
             DBConnection con = new DBConnection();
         }
 
-        [Test]
-        public void connection_should_initially_be_closed()
+        [Fact]
+        public void ConnectionShouldInitiallyBeClosed()
         {
             DBConnection con = new DBConnection();
-            Assert.IsFalse(con.IsConnectionOpen);
+            Assert.False(con.IsConnectionOpen);
         }
 
-        [Test]
-        public void should_connect_to_database()
+        [Fact]
+        public void SHouldConnectToDatabase()
         {
 
             DBConnection con = new DBConnection();
             con.Connect();
-            Assert.IsTrue(con.IsConnectionOpen);
+            Assert.True(con.IsConnectionOpen);
         }
 
-        [Test]
-        public void should_close_connection()
+        [Fact]
+        public void ShouldCLoseConnection()
         {
             DBConnection con = new DBConnection();
             con.Connect();
             con.Dispose();
-            Assert.IsFalse(con.IsConnectionOpen);
+            Assert.False(con.IsConnectionOpen);
         }
 
-        [Test]
-        public void should_close_connection_after_disposal()
+        [Fact]
+        public void ShouldCloseConnectionAfterDisposal()
         {
             DBConnection con;
             using (con = new DBConnection())
@@ -64,11 +57,11 @@ namespace ETL.Repository.Test
                 con.Connect();
             }
 
-            Assert.IsFalse(con.IsConnectionOpen);
+            Assert.False(con.IsConnectionOpen);
         }
 
-        [Test]
-        public void should_have_one_row()
+        [Fact]
+        public void ShouldHaveOneRow()
         {
             List<TestClass> temp = null;
             DBConnection con;
@@ -77,18 +70,18 @@ namespace ETL.Repository.Test
                 con.Connect();
                 temp = con.ExecuteQuery<TestClass>(@"Select 'hi', 7");
             }
-            Assert.AreEqual("hi", temp[0].str);
-            Assert.AreEqual(7, temp[0].num);
+            Assert.Equal("hi", temp[0].str);
+            Assert.Equal(7, temp[0].num);
         }
 
-        [Test]
-        public void should_return_negative_one_on_query()
+        [Fact]
+        public void ShouldReturnNegativeOneOnQuery()
         {
             DBConnection con;
             using (con = new DBConnection())
             {
                 con.Connect();
-                Assert.AreEqual(-1, con.ExecuteNonQuery("Select NOW()"));
+                Assert.Equal(-1, con.ExecuteNonQuery("Select NOW()"));
             }
 
         }

@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ETL.Repository.DTO
+﻿namespace ETL.Repository.DTO
 {
-    public class AddEmployee
+    public class EmployeeRow
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }

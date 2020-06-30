@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace ETL.Repository.DTO
 {
-    public class AddHourRow
+    public class HoursSourceRow
     {
         public string EmployeeNumber { get; set; }
         public double Hours { get; set; }
