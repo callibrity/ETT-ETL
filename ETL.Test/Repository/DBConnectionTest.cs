@@ -1,4 +1,4 @@
-using NUnit.Framework;
+using Xunit;
 using ETL.Repository;
 using System.Collections.Generic;
 
@@ -18,44 +18,38 @@ namespace ETL.Repository.Test
             }
         }
 
-        [SetUp]
-        public void Setup()
-        {
-
-        }
-
-        [Test]
+        [Fact]
         public void should_create_db_connection_object()
         {
             DBConnection con = new DBConnection();
         }
 
-        [Test]
+        [Fact]
         public void connection_should_initially_be_closed()
         {
             DBConnection con = new DBConnection();
-            Assert.IsFalse(con.IsConnectionOpen);
+            Assert.False(con.IsConnectionOpen);
         }
 
-        [Test]
+        [Fact]
         public void should_connect_to_database()
         {
 
             DBConnection con = new DBConnection();
             con.Connect();
-            Assert.IsTrue(con.IsConnectionOpen);
+            Assert.True(con.IsConnectionOpen);
         }
 
-        [Test]
+        [Fact]
         public void should_close_connection()
         {
             DBConnection con = new DBConnection();
             con.Connect();
             con.Dispose();
-            Assert.IsFalse(con.IsConnectionOpen);
+            Assert.False(con.IsConnectionOpen);
         }
 
-        [Test]
+        [Fact]
         public void should_close_connection_after_disposal()
         {
             DBConnection con;
@@ -64,10 +58,10 @@ namespace ETL.Repository.Test
                 con.Connect();
             }
 
-            Assert.IsFalse(con.IsConnectionOpen);
+            Assert.False(con.IsConnectionOpen);
         }
 
-        [Test]
+        [Fact]
         public void should_have_one_row()
         {
             List<TestClass> temp = null;
@@ -77,18 +71,18 @@ namespace ETL.Repository.Test
                 con.Connect();
                 temp = con.ExecuteQuery<TestClass>(@"Select 'hi', 7");
             }
-            Assert.AreEqual("hi", temp[0].str);
-            Assert.AreEqual(7, temp[0].num);
+            Assert.Equal("hi", temp[0].str);
+            Assert.Equal(7, temp[0].num);
         }
 
-        [Test]
+        [Fact]
         public void should_return_negative_one_on_query()
         {
             DBConnection con;
             using (con = new DBConnection())
             {
                 con.Connect();
-                Assert.AreEqual(-1, con.ExecuteNonQuery("Select NOW()"));
+                Assert.Equal(-1, con.ExecuteNonQuery("Select NOW()"));
             }
 
         }
