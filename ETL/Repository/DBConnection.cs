@@ -69,12 +69,15 @@ namespace ETL.Repository
             string username = configuration.GetConnectionString("UserName");
             string password = configuration.GetConnectionString("Password");
             string database = configuration.GetConnectionString("Database");
+            Console.WriteLine(host);
             if(String.IsNullOrEmpty(host)){
                 host = Environment.GetEnvironmentVariable("TEST_HOST");
                 username = Environment.GetEnvironmentVariable("TEST_USERNAME");
                 password = Environment.GetEnvironmentVariable("TEST_PASSWORD");
                 database = Environment.GetEnvironmentVariable("TEST_DATABASE");
+                Console.WriteLine(host);
             }
+            Console.WriteLine(host);
             return $"Host={host};Username={username};Password={password};Database={database}";
         }
 
