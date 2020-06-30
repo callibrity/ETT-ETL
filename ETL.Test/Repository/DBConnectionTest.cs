@@ -75,7 +75,7 @@ namespace ETL.Repository.Test
             using (con = new DBConnection())
             {
                 con.Connect();
-                temp = con.executeQuery<TestClass>(@"Select 'hi', 7");
+                temp = con.ExecuteQuery<TestClass>(@"Select 'hi', 7");
             }
             Assert.AreEqual("hi", temp[0].str);
             Assert.AreEqual(7, temp[0].num);
@@ -88,7 +88,7 @@ namespace ETL.Repository.Test
             using (con = new DBConnection())
             {
                 con.Connect();
-                Assert.AreEqual(-1, con.executeNonQuery("Select NOW()"));
+                Assert.AreEqual(-1, con.ExecuteNonQuery("Select NOW()"));
             }
 
         }

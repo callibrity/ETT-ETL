@@ -37,7 +37,7 @@ namespace ETL.Repository
             connection.Dispose();
         }
 
-        public List<T> executeQuery<T>(string query)
+        public List<T> ExecuteQuery<T>(string query)
         {
             var cmd = new NpgsqlCommand(query, connection);
             List<T> result = new List<T>();
@@ -56,7 +56,7 @@ namespace ETL.Repository
             return result;
         }
 
-        public int executeNonQuery(string query)
+        public int ExecuteNonQuery(string query)
         {
             var cmd = new NpgsqlCommand(query, connection);
             return cmd.ExecuteNonQuery();
