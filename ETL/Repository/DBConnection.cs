@@ -45,7 +45,7 @@ namespace ETL.Repository
             while (reader.Read())
             {
                 object[] arr = new object[reader.VisibleFieldCount];
-                for(int i = 0; i < reader.VisibleFieldCount; i++)
+                for (int i = 0; i < reader.VisibleFieldCount; i++)
                 {
                     arr[i] = reader.GetValue(i);
                 }
@@ -62,22 +62,21 @@ namespace ETL.Repository
             return cmd.ExecuteNonQuery();
         }
 
-        private string  GetConnectionString()
+        private string GetConnectionString()
         {
+            string host, username, password, database;
 
-            string host = configuration.GetConnectionString("Host");
-            string username = configuration.GetConnectionString("UserName");
-            string password = configuration.GetConnectionString("Password");
-            string database = configuration.GetConnectionString("Database");
-            Console.WriteLine(host);
-            if(String.IsNullOrEmpty(host)){
-                host = Environment.GetEnvironmentVariable("TEST_HOST");
-                username = Environment.GetEnvironmentVariable("TEST_USERNAME");
-                password = Environment.GetEnvironmentVariable("TEST_PASSWORD");
-                database = Environment.GetEnvironmentVariable("TEST_DATABASE");
-                Console.WriteLine(host);
+            host = Environment.GetEnvironmentVariable("TEST_HOST");
+            username = Environment.GetEnvironmentVariable("TEST_USERNAME");
+            password = Environment.GetEnvironmentVariable("TEST_PASSWORD");
+            database = Environment.GetEnvironmentVariable("TEST_DATABASE");
+            if (String.IsNullOrEmpty(host))
+            {
+                host = configuration.GetConnectionString("Host");
+                username = configuration.GetConnectionString("UserName");
+                password = configuration.GetConnectionString("Password");
+                database = configuration.GetConnectionString("Database");
             }
-            Console.WriteLine(host);
             return $"Host={host};Username={username};Password={password};Database={database}";
         }
 
