@@ -1,5 +1,4 @@
 using Xunit;
-using ETL.Repository;
 using System.Collections.Generic;
 
 namespace ETL.Repository.Test
@@ -19,20 +18,20 @@ namespace ETL.Repository.Test
         }
 
         [Fact]
-        public void should_create_db_connection_object()
+        public void ShouldCreateDBConnectionObject()
         {
             DBConnection con = new DBConnection();
         }
 
         [Fact]
-        public void connection_should_initially_be_closed()
+        public void ConnectionShouldInitiallyBeClosed()
         {
             DBConnection con = new DBConnection();
             Assert.False(con.IsConnectionOpen);
         }
 
         [Fact]
-        public void should_connect_to_database()
+        public void SHouldConnectToDatabase()
         {
 
             DBConnection con = new DBConnection();
@@ -41,7 +40,7 @@ namespace ETL.Repository.Test
         }
 
         [Fact]
-        public void should_close_connection()
+        public void ShouldCLoseConnection()
         {
             DBConnection con = new DBConnection();
             con.Connect();
@@ -50,7 +49,7 @@ namespace ETL.Repository.Test
         }
 
         [Fact]
-        public void should_close_connection_after_disposal()
+        public void ShouldCloseConnectionAfterDisposal()
         {
             DBConnection con;
             using (con = new DBConnection())
@@ -62,7 +61,7 @@ namespace ETL.Repository.Test
         }
 
         [Fact]
-        public void should_have_one_row()
+        public void ShouldHaveOneRow()
         {
             List<TestClass> temp = null;
             DBConnection con;
@@ -76,7 +75,7 @@ namespace ETL.Repository.Test
         }
 
         [Fact]
-        public void should_return_negative_one_on_query()
+        public void ShouldReturnNegativeOneOnQuery()
         {
             DBConnection con;
             using (con = new DBConnection())

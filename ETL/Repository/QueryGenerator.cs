@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using ETL.Repository.DTO;
 
 namespace ETL.Repository
@@ -12,12 +10,12 @@ namespace ETL.Repository
             return "SELECT employee_number from public.ett_employee";
         }
 
-        public static string AddEmployee(AddEmployee employeeObject)
+        public static string AddEmployee(EmployeeRow employeeObject)
         {
             return $"INSERT INTO public.ett_employee (first_name, last_name, employee_number) VALUES('{employeeObject.FirstName}', '{employeeObject.LastName}', '{employeeObject.EmployeeNumber}');";
         }
 
-        public static string AddHourRow(AddHourRow obj)
+        public static string AddHourRow(HoursSourceRow obj)
         {
             return $"INSERT INTO public.ett_hours_source (employee_number_fk, hours, code, the_date) VALUES('{obj.EmployeeNumber}', {obj.Hours}, '{obj.Code}', '{obj.Date.ToString("MM/dd/yyyy")}');";
         }
@@ -30,7 +28,7 @@ namespace ETL.Repository
             return result;
         }
 
-        public static string AddEmployeeMetric(EmployeeMetric obj)
+        public static string AddEmployeeMetric(EmployeeMetricRow obj)
         {
             string result = "";
             result += "INSERT INTO public.ett_employee_metrics ";
@@ -39,7 +37,7 @@ namespace ETL.Repository
             return result;
         }
 
-        public static string UpdateEmployeeMetric(EmployeeMetric obj)
+        public static string UpdateEmployeeMetric(EmployeeMetricRow obj)
         {
             string result = "";
             result += "UPDATE public.ett_employee_metrics SET ";
