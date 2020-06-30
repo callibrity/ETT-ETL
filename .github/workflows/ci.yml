@@ -24,7 +24,4 @@ jobs:
     - name: Test
       run: dotnet test --no-restore --verbosity normal
       env:
-        TEST_HOST: ${{ secrets.TEST_HOST }}
-        TEST_USERNAME: ${{ secrets.TEST_USERNAME }}
-        TEST_PASSWORD: ${{ secrets.TEST_PASSWORD }}
-        TEST_DATABASE: ${{ secrets.TEST_DATABASE }}
+        CONNECTION: ${{ secrets.CONNECTION }}
