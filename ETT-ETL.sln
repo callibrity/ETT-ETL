@@ -10,7 +10,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Main", "Main\Main.csproj", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ETL", "ETL\ETL.csproj", "{D51A9772-4238-455E-A83D-2F2ED2864341}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ETL.Test", "ETL.Test\ETL.Test.csproj", "{967A757E-B9B2-40DB-AC81-1B0B1A8B4CFE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ETL.Tests", "ETL.Tests\ETL.Tests.csproj", "{967A757E-B9B2-40DB-AC81-1B0B1A8B4CFE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
