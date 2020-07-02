@@ -5,7 +5,7 @@ using OfficeOpenXml;
 using ETL.ExcelParsing;
 using ETL.ExcelParsing.DTO;
 
-namespace ETL.Tests.EmpDataParserTests
+namespace ETL.Tests.ExcelParsing
 {
   public class WhenCreatedWithValidData
   {
