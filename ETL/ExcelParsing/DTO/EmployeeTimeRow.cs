@@ -2,15 +2,15 @@ using System;
 using System.Globalization;
 
 
-namespace ETL.DTO
+namespace ETL.ExcelParsing.DTO
 {
-  public class EmpDataRow
+  public class EmployeeTimeRow
   {
     public DateTime Date;
     public double Hours;
     public string Code;
 
-    public EmpDataRow(string date, string hours, string code)
+    public EmployeeTimeRow(string date, string hours, string code)
     {
       this.Date = StringToDateTime(date);
       this.Hours = double.Parse(hours);

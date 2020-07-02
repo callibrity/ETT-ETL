@@ -18,6 +18,11 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <None Update="sample.appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
     <None Update="EmployeeFile.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

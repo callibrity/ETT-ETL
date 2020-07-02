@@ -2,25 +2,26 @@ using System;
 using System.Collections.Generic;
 using Xunit;
 using OfficeOpenXml;
-using ETL.DTO;
+using ETL.ExcelParsing;
+using ETL.ExcelParsing.DTO;
 
-namespace ETL.Tests.EmpDataParserTests
+namespace ETL.Tests.ExcelParsing
 {
   public class WhenCreatedWithValidData
   {
-    private EmpDataParser _empDataParser;
-    private List<Employee> _empObjList;
+    private ExcelParser _excelParser;
+    private List<Employee> _employees;
 
     public WhenCreatedWithValidData()
     {
-      _empDataParser = new EmpDataParser(System.AppDomain.CurrentDomain.BaseDirectory + "EmployeeFile.xlsx");
-      _empObjList = _empDataParser.GetAllEmpData();
+      _excelParser = new ExcelParser(System.AppDomain.CurrentDomain.BaseDirectory + "EmployeeFile.xlsx");
+      _employees = _excelParser.GetAllEmployeeData();
     }
 
     [Fact]
     public void ThenStartCellIsOneCommaOne()
     {
-      ExcelCellAddress start = _empDataParser.Worksheet.Dimension.Start;
+      ExcelCellAddress start = _excelParser.Worksheet.Dimension.Start;
       Assert.Equal(1, start.Row);
       Assert.Equal(1, start.Column);
     }
@@ -28,7 +29,7 @@ namespace ETL.Tests.EmpDataParserTests
     [Fact]
     public void ThenEndCellIsNotOneCommaOne()
     {
-      ExcelCellAddress end = _empDataParser.Worksheet.Dimension.End;
+      ExcelCellAddress end = _excelParser.Worksheet.Dimension.End;
       Assert.NotEqual(1, end.Row);
       Assert.NotEqual(1, end.Column);
     }
@@ -36,37 +37,37 @@ namespace ETL.Tests.EmpDataParserTests
     [Fact]
     public void ThenMoreThanOneEmployeeIsFound()
     {
-      List<int> employeeStartRows = _empDataParser.EmpStartRowIndexList;
+      List<int> employeeStartRows = _excelParser.EmployeeStartRows;
       Assert.True(employeeStartRows.Count > 2);
     }
 
     [Fact]
     public void ThenTheFirstEmployeeStartsAfterRowOne()
     {
-      List<int> employeeStartRows = _empDataParser.EmpStartRowIndexList;
+      List<int> employeeStartRows = _excelParser.EmployeeStartRows;
       Assert.True(employeeStartRows[0] > 1);
     }
 
     [Fact]
     public void ThenFirstEmployeeMatchesExpectedValues()
     {
-      Employee empObj = _empObjList[0];
+      Employee employee = _employees[0];
       int expectedNum = 2000;
       string expectedName = "Gatsby, Jay";
-      Assert.Equal(expectedNum, empObj.EmpNum);
-      Assert.Equal(expectedName, empObj.Name);
+      Assert.Equal(expectedNum, employee.Num);
+      Assert.Equal(expectedName, employee.Name);
     }
 
     [Fact]
     public void ThenFirstEmployeeFirstDayMatchesExpectedValues()
     {
-      Employee empObj = _empObjList[0];
+      Employee employee = _employees[0];
       var expectedDate = new DateTime(2020, 1, 1);
       double expectedHours = 8.00;
       string expectedCode = "HOLIDAY";
-      Assert.Equal(expectedDate, empObj.EmpData[0].Date);
-      Assert.Equal(expectedHours, empObj.EmpData[0].Hours);
-      Assert.Equal(expectedCode, empObj.EmpData[0].Code);
+      Assert.Equal(expectedDate, employee.TimeData[0].Date);
+      Assert.Equal(expectedHours, employee.TimeData[0].Hours);
+      Assert.Equal(expectedCode, employee.TimeData[0].Code);
     }
   }
 }

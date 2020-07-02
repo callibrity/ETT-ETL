@@ -1,7 +1,7 @@
 using System;
 using Xunit;
 using System.Globalization;
-using ETL.DTO;
+using ETL.ExcelParsing.DTO;
 
 namespace ETL.Tests.EmpDataRowTests
 {
@@ -17,7 +17,7 @@ namespace ETL.Tests.EmpDataRowTests
       var expectedDate = DateTime.ParseExact("01/01/2020", "MM/dd/yyyy", CultureInfo.InvariantCulture);
       double expectedHours = 8;
       string expectedCode = "Holiday";
-      var empDataRow = new EmpDataRow(_mockValidDate, _mockValidHours, _mockValidCode);
+      var empDataRow = new EmployeeTimeRow(_mockValidDate, _mockValidHours, _mockValidCode);
       Assert.Equal(expectedDate, empDataRow.Date);
       Assert.Equal(expectedHours, empDataRow.Hours);
       Assert.Equal(expectedCode, empDataRow.Code);
@@ -30,7 +30,7 @@ namespace ETL.Tests.EmpDataRowTests
       string mockInvalidDate = "13/13/2020";
       Assert.ThrowsAny<Exception>(() =>
         {
-          new EmpDataRow(mockInvalidDate, _mockValidHours, _mockValidCode);
+          new EmployeeTimeRow(mockInvalidDate, _mockValidHours, _mockValidCode);
         }
           );
     }
@@ -41,7 +41,7 @@ namespace ETL.Tests.EmpDataRowTests
       string mockInvalidHours = "eight";
       Assert.ThrowsAny<Exception>(() =>
         {
-          new EmpDataRow(_mockValidDate, mockInvalidHours, _mockValidCode);
+          new EmployeeTimeRow(_mockValidDate, mockInvalidHours, _mockValidCode);
         }
           );
     }
