@@ -1,12 +1,14 @@
 ﻿using System;
+using System.IO;
 
 namespace Main
 {
-    class Program
+  class Program
+  {
+    static void Main(string[] args)
     {
-        static void Main(string[] args)
-        {
-            Console.WriteLine("Hello World!");
-        }
+      string path = System.AppDomain.CurrentDomain.BaseDirectory + "EmployeeFile.xlsx";
+      System.Console.WriteLine(path);
     }
+  }
 }
