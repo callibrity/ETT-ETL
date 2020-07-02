@@ -19,9 +19,11 @@ namespace ETL.Configuration
     private static void ConfigureServices(IServiceCollection serviceCollection)
     {
       string dir = System.AppDomain.CurrentDomain.BaseDirectory;
+      string github = Environment.GetEnvironmentVariable("GITHUB");
+      string appSettingsFile = String.IsNullOrEmpty(github) ? "appsettings.json" : "sample.appsettings.json";
       configuration = new ConfigurationBuilder()
           .SetBasePath(System.AppDomain.CurrentDomain.BaseDirectory)
-          .AddJsonFile("appsettings.json", false)
+          .AddJsonFile(appSettingsFile, false)
           .Build();
 
       serviceCollection.AddSingleton<IConfigurationRoot>(configuration);
